@@ -1,0 +1,25 @@
+#myNavbar {
+    
+    transition: all 0.5s;
+    color: rgba(68, 67, 67, 0.8);
+    
+}
+
+.navbar {
+    background-color: black;
+    padding: 0;
+    transition: all 0.5s;
+    border-bottom: 2px solid grey;
+    z-index: 999;
+    .icon{
+        padding: 10px 10px; 
+    }
+  
+
+   
+
+    .navbar-nav {
+        width: 100%;
+    }
+}
+

@@ -1,21 +1,27 @@
 import React, {  useState } from 'react'
 import Button from '../../components/Button/button';
 import FormInput from '../../components/FormInput/formInput';
-
+import { produce } from "immer";
 
   
 
 
 
 const LoginPage = () => {
-    const [isValid, setIsValid] = useState(true);
+    const [isFormValid, setIsFormValid] = useState(true);
     const [formData, setFormData]= useState({
-        username: '',
-        password: ''
+        username: {
+            value: '',
+            isValid: ''
+        },
+        password: {
+            value: '',
+            isValid: ''
+        }
     })
 
     const handleChange = (e) => {
-        setFormData({...formData, [e.target.name] : e.target.value  })
+        setFormData(produce(prev => prev[e.target.name].value))
     }
     
     const handleSubmit = (e) => {
@@ -26,11 +32,7 @@ const LoginPage = () => {
 
     const checkValidity = (e) => {
         console.log(e.target.value);
-        console.log(isValid);
-        if(e.target.value) {
-            setIsValid(true)
-        }
-        else { setIsValid(false)}
+        
     }
 
     
@@ -50,7 +52,7 @@ const LoginPage = () => {
                         changed={(e) => handleChange(e)}
                         value={formData.username}
                         clicked={(e)=>checkValidity(e)}
-                        isValid={isValid}
+                        
                     />
                     
                     <FormInput 
@@ -60,6 +62,8 @@ const LoginPage = () => {
                         helper='insert your Password'
                         changed={(e) => handleChange(e)}
                         value={formData.password}
+                        clicked={(e)=>checkValidity(e)}
+                        
                     />
                     <Button content='Submit' colorType='primary' 
                         type='submit'

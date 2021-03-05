@@ -16,7 +16,7 @@ const formInput = ({changed, type, label, value, name, clicked, isValid}) => {
                     onBlur={clicked} 
                     ></input>
                 <small id="emailHelp" className="form-text text-danger">
-                    {isValid ? isValid : 'username required'}
+                    {isValid ? isValid : `${label} required`}
                 </small>
             </label>
         </div>
